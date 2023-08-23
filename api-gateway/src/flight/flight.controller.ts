@@ -20,7 +20,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt_auth.guard';
 
 @ApiTags('flight')
-@UseGuards(JwtAuthGuard)
+//@UseGuards(JwtAuthGuard)
 @Controller('api/v2/flight')
 export class FlightController {
   constructor(private readonly clienProxy: ClientProxySuperFlights) {}
