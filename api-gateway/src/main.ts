@@ -10,6 +10,12 @@ async function bootstrap() {
   app.useGlobalFilters(new AllExceptionFilter());
   app.useGlobalInterceptors(new TimeOutInterceptor());
 
+  app.enableCors({
+    origin: 'http://localhost:3001', // Aquí define el origen permitido
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  });
+
   const options = new DocumentBuilder()
     .setTitle('SuperFlies API')
     .setDescription('Scheduled Flies App')
@@ -20,8 +26,8 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('/api/docs', app, document, {
     swaggerOptions: {
-      filter: true 
-    }
+      filter: true,
+    },
   });
 
   await app.listen(process.env.PORT || 3000);
